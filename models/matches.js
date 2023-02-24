@@ -6,7 +6,7 @@ const { getTeamByID } = require("./teams");
 
 
 async function getMatchInfoByDate(match_date,date_state) {
-    console.log(match_date)
+    console.log(match_date, date_state)
     return knex("matches")
       .select("*")
       .where({ match_date })
@@ -18,14 +18,14 @@ async function getMatchInfoByDate(match_date,date_state) {
                     if(date_state==1) {
                         return {team1ID:team1_data.teamid,team2ID:team2_data.teamid,team1Name:team1_data.teamname,
                             team2Name:team2_data.teamname,isdraw:false, match_date,matchid:match_data.matchid,
-                            matchresult:"Upcoming Match"
+                            matchresult:"Upcoming Match", isUpcoming:true
                         }
 
                     }
                     else if(date_state==2) {
                         return {team1ID:team1_data.teamid,team2ID:team2_data.teamid,team1Name:team1_data.teamname,
                             team2Name:team2_data.teamname,isdraw:false, match_date,matchid:match_data.matchid,
-                            matchresult:"Ongoing Match"
+                            matchresult:"Ongoing Match",  isUpcoming:false
                         }
 
                     }
@@ -42,7 +42,7 @@ async function getMatchInfoByDate(match_date,date_state) {
                         }
                         return {team1ID:team1_data.teamid,team2ID:team2_data.teamid,team1Name:team1_data.teamname,
                             team2Name:team2_data.teamname,isdraw:result_data.isdraw,winnerTeam, match_date,matchid:match_data.matchid,
-                             matchresult:`${winnerTeam} won the match`
+                             matchresult:`${winnerTeam} won the match`, isUpcoming:false
                         }
 
                     })
