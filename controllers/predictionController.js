@@ -29,4 +29,4 @@ async function createPredictionInfo(req,res) {
  
 
 } 
-module.exports= {createPredictionInfo}
+module.exports= {createPredictionInfo,}

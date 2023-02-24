@@ -32,7 +32,9 @@ return await knex("results")
 
 
 const getScore = async() =>{
-  return await knex.raw
+  return await knex.raw(
+    "Select users.name,count(users.*)*10 as score from users inner join (select pred.* from predictions pred inner join results res on pred.teamid=res.teamid where pred.teamid is not null) temp on temp.user_id = users.user_id group by users.user_id order by score desc"
+    )
 }
 
-module.exports = {getResultByMatchID, createResult}
+module.exports = {getResultByMatchID, createResult,getScore}
