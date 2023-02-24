@@ -2,7 +2,17 @@ const knex = require("../library/db");
 const { getResultByMatchID } = require("./results");
 const { getTeamByID } = require("./teams");
 
-
+async function getMatchDateByID(matchid) {
+    return knex("matches")
+      .select("*")
+      .where({ matchid })
+      .then((rows) => {
+          if(Array.isArray(rows) && rows.length > 0) {
+           const match_data=rows[0]
+            return match_data.match_date
+            }})
+        
+        }
 
 
 async function getMatchInfoByDate(match_date,date_state) {
@@ -56,4 +66,4 @@ async function getMatchInfoByDate(match_date,date_state) {
         return {data:"Upcoming match"}
       });
   }
-  module.exports = {getMatchInfoByDate}
+  module.exports = {getMatchInfoByDate, getMatchDateByID}
