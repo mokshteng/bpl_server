@@ -9,4 +9,5 @@ const createResultInfo = async (req, res) => {
 
     })
 }
+
 module.exports = {createResultInfo}

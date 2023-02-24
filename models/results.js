@@ -30,4 +30,9 @@ return await knex("results")
   });
 }
 
+
+const getScore = async() =>{
+  return await knex.raw
+}
+
 module.exports = {getResultByMatchID, createResult}

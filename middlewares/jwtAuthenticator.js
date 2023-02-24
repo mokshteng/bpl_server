@@ -4,7 +4,7 @@ const verifyJWTToken = async (req, res, next) => {
   if (!req.cookies) {
     return res.status(403).json({ message: "Please Login" });
   }
-  const token = req.cookies.token;
+  const token = req.body.token;
   
   const data = await verifyToken(token);
   if (data.err) {
