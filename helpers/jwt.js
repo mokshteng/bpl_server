@@ -8,8 +8,9 @@ const createToken = (payload) => {
 
 const verifyToken = async( token) => {
   return jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    
     if (err) return { err };
-    return { userid: decoded.userid };
+    return { userid: decoded.user_id };
   });
 };
 
