@@ -8,16 +8,15 @@ const getMatchInfo = async (req, res) => {
   const matchDate = new Date(matchdate);
   let dateState = 1;
   if (
-    (matchDate.getDate() == currentDate.getDate() &&
+    (matchDate.getDate() == currentDate.getDate() && matchDate.getMonth() == currentDate.getMonth()&&
+    matchDate.getFullYear() == currentDate.getFullYear() &&
       currentHour == 16 &&
       currentMinute >= 30) ||
     (currentHour > 17 && currentHour < 20)
   ) {
     dateState = 2;
   } else if (
-    matchDate.getDate() < currentDate.getDate() ||
-    matchDate.getMonth() < currentDate.getMonth() ||
-    matchDate.getFullYear() < currentDate.getFullYear()
+    matchDate.getTime()<currentDate.getTime()
   ) {
     dateState = 3;
   }

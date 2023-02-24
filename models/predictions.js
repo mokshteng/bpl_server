@@ -1,6 +1,7 @@
 const knex = require("../library/db");
 
 async function createPrediction(prediction) {
+
     const { matchid, user_id, teamid, is_draw } = prediction;
   return knex("predictions")
     .select("*")
