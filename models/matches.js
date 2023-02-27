@@ -21,7 +21,10 @@ async function getMatchInfoByDate(match_date,date_state) {
       .select("*")
       .where({ match_date })
       .then((rows) => {
-          if(Array.isArray(rows) && rows.length > 0) {
+        if(Array.isArray(rows) && rows.length == 0) {
+            return {error:"No matches this day"}
+        }
+          else if(Array.isArray(rows) && rows.length > 0) {
            const match_data=rows[0]
             return getTeamByID(match_data.teamid1).then((team1_data)=>{
                 return getTeamByID(match_data.teamid2).then((team2_data)=>{
@@ -40,6 +43,13 @@ async function getMatchInfoByDate(match_date,date_state) {
 
                     }
                     return getResultByMatchID(match_data.matchid).then((result_data)=>{
+                        console.log(result_data)
+                        if(result_data.error) {
+                           return {team1ID:team1_data.teamid,team2ID:team2_data.teamid,team1Name:team1_data.teamname,
+                                team2Name:team2_data.teamname, match_date,matchid:match_data.matchid,
+                                 matchresult:`Result not yet declared`, isUpcoming:false
+                            }
+                        }
                         let winnerTeam=null
                         if(!result_data.isdraw) {
                             if(result_data.teamid==team1_data.teamid) {

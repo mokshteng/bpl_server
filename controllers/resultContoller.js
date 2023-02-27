@@ -1,4 +1,4 @@
-const { createResult,get, getScore } = require("../models/results")
+const { createResult, getScore } = require("../models/results")
 const createResultInfo = async (req, res) => {
     createResult(req.body).then((data)=>{
         return res.status(200).json({success:true,data:"Result created"})

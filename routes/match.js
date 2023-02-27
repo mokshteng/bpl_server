@@ -3,7 +3,7 @@ const route = express.Router();
 const matchController = require("../controllers/matchController");
 const {verifyJWTToken} = require("../middlewares/jwtAuthenticator")
 
-route.get("/getmatchinfo", verifyJWTToken, matchController.getMatchInfo);
+route.get("/getmatchinfo", matchController.getMatchInfo);
 
 module.exports =  route;
  

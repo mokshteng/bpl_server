@@ -31,7 +31,6 @@ const registration = async (req, res) => {
           password: encryptedPassword,
         })
           .then((userData) => {
-            console.log(userData)
             res.status(201).json({ success: true, data: "User Created" });
           })
           .catch((err) => {
