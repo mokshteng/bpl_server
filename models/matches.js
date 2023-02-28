@@ -37,6 +37,7 @@ async function getMatchInfoByDate(match_date, date_state) {
                 matchid: match_data.matchid,
                 matchresult: "Upcoming Match",
                 isUpcoming: true,
+                isOngoing:false
               };
             } else if (date_state == 2) {
               return {
@@ -49,6 +50,7 @@ async function getMatchInfoByDate(match_date, date_state) {
                 matchid: match_data.matchid,
                 matchresult: "Ongoing Match",
                 isUpcoming: false,
+                isOngoing:true
               };
             }
             return getResultByMatchID(match_data.matchid).then(
@@ -64,6 +66,7 @@ async function getMatchInfoByDate(match_date, date_state) {
                     matchid: match_data.matchid,
                     matchresult: result_data.error,
                     isUpcoming: false,
+                    isOngoing:false
                   };
                 }
                 let winnerTeam = null;
@@ -85,6 +88,7 @@ async function getMatchInfoByDate(match_date, date_state) {
                   matchid: match_data.matchid,
                   matchresult: `${winnerTeam} won the match`,
                   isUpcoming: false,
+                  isOngoing:false
                 };
               }
             );

@@ -1,16 +1,24 @@
 const { verifyToken } = require("../helpers/jwt");
 
 const verifyJWTToken = async (req, res, next) => {
-  if (!req.cookies) {
-    return res.status(403).json({ message: "Please Login" });
+  const { authorization } = req.headers;
+   
+  if (!authorization || !authorization.includes("Bearer ")) {
+    return res.status(400).json({ err: "Invalid" });
   }
-  const token = req.cookies.token;
-  
+  console.log(authorization)
+  const token = authorization.split(" ")[1];
+  console.log(token)
+
   const data = await verifyToken(token);
+  console.log(data)
   if (data.err) {
     return res.status(403).json({ data: "User token invalid" });
   }
-  console.log(data)
+  if (req.path === "/isauth") {
+    return res.status(200).json({ loggedIn: true });
+    
+  }
   const { userid } = data;
   const payload = { userid };
   req.session = payload;

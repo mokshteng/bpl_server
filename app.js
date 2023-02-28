@@ -5,9 +5,8 @@ const index = require('./routes/index')
 const port = 5001;
 const cors = require("cors");
 const corsOptions = {
-    origin: "*",
-    credentials: true, 
-    optionSuccessStatus: 200,
+    origin: "http://localhost:3000",
+    credentials: true,
   };
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 
