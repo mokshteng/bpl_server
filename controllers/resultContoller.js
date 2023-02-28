@@ -10,7 +10,7 @@ const createResultInfo = async (req, res) => {
 }
 const getLeaderBoard = async(req,res) => {
     getScore().then((data)=>{
-        res.status(200).json({success:true,data})
+        res.status(200).json({success:true,data:data})
     })
 
 }

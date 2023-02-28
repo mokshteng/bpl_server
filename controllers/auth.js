@@ -11,7 +11,7 @@ const registration = async (req, res) => {
     if (name === "" || password === "" || !isEmailValid(useremail)) {
       res
         .status(401)
-        .json({ data: "", success: false, error: "Invalid User Details" });
+        .json({  success: false, error: "Invalid User Details" });
     }
     getUserByEmail(useremail)
       .then(async (user) => {
@@ -19,7 +19,7 @@ const registration = async (req, res) => {
         if (!user.error) {
           return res
             .status(401)
-            .json({ data: "", success: false, error: "User already exists" });
+            .json({  success: false, error: "User already exists" });
          
         }
         const encryptedPassword = encryptPassword(password);
@@ -47,7 +47,7 @@ const login = async (req, res) => {
   const { useremail, password } = req.body;
   const user = await getUserByEmail(useremail);
   if (user.error) {
-    res.status(404).json({ data: user.error });
+    res.status(404).json({success:false, error: user.error });
     return;
   }
 
@@ -57,13 +57,13 @@ const login = async (req, res) => {
   console.log(correctPassword)
   console.log(password)
   if (!isLoggedIn) {
-    res.status(403).json({ isLoggedIn });
+    res.status(403).json({ success:false, error:'Invalid email or password' });
     return;
   }
   const { user_id } = user;
   const token = createToken({ user_id });
   res.cookie("token", token);
-  res.status(200).json({ isLoggedIn, token });
+  res.status(200).json({ success:true, data:isLoggedIn });
 };
 
 module.exports = {

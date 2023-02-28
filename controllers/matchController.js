@@ -21,7 +21,7 @@ const getMatchInfo = async (req, res) => {
             return res.status(200).json({ success: true, data:data.error });
 
         }
-      return res.status(200).json({ success: true, data });
+      return res.status(200).json({ success: true, data:data });
     })
     .catch((err) => {
       console.log(err);

@@ -7,7 +7,7 @@ async function createPredictionInfo(req, res) {
   getMatchDateByID(matchid).then((matchdate) => {
     if(isPreviousDay(matchdate)||(isToday(matchdate)&&isOngoing())||(isTodayAndDone(matchdate))) {
         return res.status(401)
-        .json({ success: false, data: "Prediction time over" });
+        .json({ success: false, error: "Prediction time over" });
     }
     const user_id = req.session.userid;
     createPrediction({ user_id, matchid, teamid, is_draw: isdraw })
