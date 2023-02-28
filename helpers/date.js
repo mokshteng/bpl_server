@@ -1,12 +1,14 @@
 const isToday = (matchDate) => {
     const currentDate = new Date()
     currentDate.setHours(0,0,0,0)
+    matchDate.setHours(0,0,0,0)
     return currentDate.getTime() == matchDate.getTime()
 
 } 
 const isPreviousDay = (matchDate) => {
     const currentDate = new Date()
     currentDate.setHours(0,0,0,0)
+    matchDate.setHours(0,0,0,0)
     return currentDate.getTime()>matchDate.getTime()
 
 }
@@ -14,6 +16,7 @@ const isPreviousDay = (matchDate) => {
 const isUpcomingDay = (matchDate) => {
     const currentDate = new Date()
     currentDate.setHours(0,0,0,0)
+    matchDate.setHours(0,0,0,0)
     return currentDate.getTime()<matchDate.getTime()
 }
 
@@ -32,6 +35,7 @@ const isOngoing = () => {
 const isTodayAndDone = (matchDate) => {
     let currentDate = new Date()
     currentDate.setHours(0,0,0,0)
+    matchDate.setHours(0,0,0,0)
     const endTime = new Date(); 
     endTime.setHours(20);
     endTime.setMinutes(0);

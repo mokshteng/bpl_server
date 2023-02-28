@@ -9,7 +9,7 @@ async function getResultByMatchID(matchid) {
         return rows[0];
       }
 
-      return { error: "Result does not exist" };
+      return { error: "Result not yet declared" };
     });
 }
 
@@ -34,11 +34,12 @@ const getScore = async () => {
     .raw(
       "Select users.name,count(users.*)*10 as score from users inner join (select pred.* from predictions pred inner join results res on pred.teamid = res.teamid and res.matchid = pred.matchid where pred.teamid is not null) temp on temp.user_id = users.user_id group by users.user_id order by score desc"
     )
-    .then((rows) => {
+    .then((result) => {
+      const rows = result.rows
       if (Array.isArray(rows) && rows.length > 0) {
-        return rows[0];
+        return rows;
       }
-      return { error: "No results found" };
+      return { data:"Empty Leaderboard!" };
     });
 };
 
