@@ -13,10 +13,10 @@ const verifyJWTToken = async (req, res, next) => {
   const data = await verifyToken(token);
   console.log(data)
   if (data.err) {
-    return res.status(403).json({ data: "User token invalid" });
+    return res.status(403).json({ success:false, loggedIn: false});
   }
   if (req.path === "/isauth") {
-    return res.status(200).json({ loggedIn: true });
+    return res.status(200).json({ success:true, loggedIn: true });
     
   }
   const { userid } = data;

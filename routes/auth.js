@@ -5,7 +5,7 @@ const { verifyJWTToken } = require("../middlewares/jwtAuthenticator");
 
 route.post("/register", authController.registration);
 route.post("/login", authController.login);
-route.post("/isauth",verifyJWTToken)
+route.get("/isauth",verifyJWTToken)
 
 module.exports =  route;
  
