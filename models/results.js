@@ -32,7 +32,7 @@ async function createResult(result) {
 const getScore = async () => {
   return knex
     .raw(
-      "Select users.name,count(users.*)*10 as score from users inner join (select pred.* from predictions pred inner join results res on pred.teamid = res.teamid and res.matchid = pred.matchid where pred.teamid is not null) temp on temp.user_id = users.user_id group by users.user_id order by score desc"
+      "Select users.name,count(users.*)*10 as score from users inner join (select pred.* from predictions pred inner join results res on pred.teamid = res.teamid and res.matchid = pred.matchid where pred.teamid is not null) temp on temp.user_id = users.user_id group by users.user_id order by score desc limit 5"
     )
     .then((result) => {
       const rows = result.rows

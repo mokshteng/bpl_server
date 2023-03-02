@@ -13,7 +13,7 @@ const registration = async (req, res) => {
     console.log(req.body);
     const { useremail, name, password } = req.body;
     if (name === "" || password === "" || !isEmailValid(useremail)) {
-      res.status(401).json({ success: false, error: "Invalid User Details" });
+      return res.status(401).json({ success: false, error: "Invalid User Details" });
     }
     getUserByEmail(useremail)
       .then(async (user) => {

@@ -70,11 +70,14 @@ async function getMatchInfoByDate(match_date, date_state) {
                   };
                 }
                 let winnerTeam = null;
+                let winnerID = null
                 if (!result_data.isdraw) {
                   if (result_data.teamid == team1_data.teamid) {
                     winnerTeam = team1_data.teamname;
+                    winnerID = team1_data.teamid
                   } else {
                     winnerTeam = team2_data.teamname;
+                    winnerID = team2_data.teamid
                   }
                 }
                 return {
@@ -88,7 +91,8 @@ async function getMatchInfoByDate(match_date, date_state) {
                   matchid: match_data.matchid,
                   matchresult: `${winnerTeam} won the match`,
                   isUpcoming: false,
-                  isOngoing:false
+                  isOngoing:false,
+                  winnerID: winnerID
                 };
               }
             );
